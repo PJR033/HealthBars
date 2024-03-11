@@ -734,6 +734,7 @@ GameObject:
   - component: {fileID: 1068210169}
   - component: {fileID: 1068210168}
   - component: {fileID: 1068210170}
+  - component: {fileID: 1068210171}
   m_Layer: 0
   m_Name: LightBandit
   m_TagString: Untagged
@@ -818,6 +819,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e08528f1d0b8b846b2114e77c2d5ed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1068210171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068210167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e77161309a3ba04fb588d8a6b965f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1068811610
@@ -1006,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e310b7f74d0c02499fe96ce078884e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 1068210170}
+  Health: {fileID: 1068210170}
 --- !u!114 &1167967874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1752,8 +1765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52cd4edf6afde3c44abae9812680cd1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 1068210170}
-  _maxDelta: 0.01
+  Health: {fileID: 1068210170}
+  _maxDelta: 0.002
 --- !u!1 &1644398597
 GameObject:
   m_ObjectHideFlags: 0
@@ -2096,4 +2109,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c3806eba1127c4d854bd732e9a8085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 1068210170}
+  Health: {fileID: 1068210170}

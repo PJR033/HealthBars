@@ -1,27 +1,30 @@
-using UnityEngine.UI;
+using System.Collections;
 using UnityEngine;
 
-public class SmoothlyHealthBar : MonoBehaviour
+public class SmoothlyHealthBar : HealthBar
 {
-    [SerializeField] private Health _health;
     [SerializeField] private float _maxDelta;
 
-    private Image _healthBar;
+    private Coroutine _setHealthBarSmoothlyCoroutine;
 
-    private void Awake()
+    protected override void SetHealthBarValue()
     {
-        _healthBar = GetComponent<Image>();
+        if(_setHealthBarSmoothlyCoroutine != null)
+        {
+            StopCoroutine(_setHealthBarSmoothlyCoroutine);
+        }
+
+        _setHealthBarSmoothlyCoroutine = StartCoroutine(SetHealthBarSmoothly());
     }
 
-    private void Update()
+    private IEnumerator SetHealthBarSmoothly()
     {
-        SetHealthBarValueSmoothly();
-    }
+        float barValue = Health.CurrentHealth / Health.MaxHealth;
 
-    private void SetHealthBarValueSmoothly()
-    {
-        float barValue = _health.CurrentHealth / _health.MaxHealth;
-
-        _healthBar.fillAmount = Mathf.MoveTowards(_healthBar.fillAmount, barValue, _maxDelta);
+        while (HealthImage.fillAmount != barValue)
+        {
+            HealthImage.fillAmount = Mathf.MoveTowards(HealthImage.fillAmount, barValue, _maxDelta);
+            yield return null;
+        }
     }
 }

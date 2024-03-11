@@ -1,27 +1,20 @@
-using UnityEngine;
 using TMPro;
 
-public class TextHealthViewer : MonoBehaviour
+public class TextHealthViewer : HealthChangeSubscriber
 {
-    [SerializeField] private Health _health;
-
     private TextMeshProUGUI _text;
 
     private void Awake()
     {
         _text = GetComponent<TextMeshProUGUI>();
+        SetHealthBarValue();
     }
 
-    private void Update()
+    protected override void SetHealthBarValue()
     {
-        ViewHealth();
-    }
+        string currentHealth = Health.CurrentHealth.ToString();
+        string maxHealth = Health.MaxHealth.ToString();
 
-    private void ViewHealth()
-    {
-        string currentHealth = _health.CurrentHealth.ToString();
-        string maxHealth = _health.MaxHealth.ToString();
-
-        _text.text = $"Health - {currentHealth}/{maxHealth}";
+        _text.text = "Health - " + currentHealth + "/" + maxHealth;
     }
 }

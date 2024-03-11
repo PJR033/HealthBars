@@ -1,31 +1,18 @@
 using UnityEngine.UI;
-using UnityEngine;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : HealthChangeSubscriber
 {
-    [SerializeField] private Health _health;
-
-    private Image _healthBar;
+    protected Image HealthImage;
 
     private void Awake()
     {
-        _healthBar = GetComponent<Image>();
+        HealthImage = GetComponent<Image>();
     }
 
-    private void OnEnable()
+    protected override void SetHealthBarValue()
     {
-        _health.HealthChanged += SetHealthBarValue;
-    }
+        float barValue = Health.CurrentHealth / Health.MaxHealth;
 
-    private void OnDisable()
-    {
-        _health.HealthChanged -= SetHealthBarValue;
-    }
-
-    private void SetHealthBarValue()
-    {
-        float barValue = _health.CurrentHealth / _health.MaxHealth;
-
-        _healthBar.fillAmount = barValue;
+        HealthImage.fillAmount = barValue;
     }
 }

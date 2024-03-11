@@ -4,6 +4,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public event Action HealthChanged;
+    public event Action HealthOver;
 
     public float MaxHealth { get; private set; } = 100;
     public float CurrentHealth { get; private set; }
@@ -22,7 +23,7 @@ public class Health : MonoBehaviour
 
             if (CurrentHealth == 0)
             {
-                Destroy(gameObject);
+                HealthOver?.Invoke();
             }
         }
     }
